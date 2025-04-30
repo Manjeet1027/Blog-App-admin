@@ -18,10 +18,13 @@ const app = express();
 
 app.use(cookieParser());
 app.use(express.json());
-app.use(cors({
-  origin: ["http://localhost:3000","https://blog-app-admin.netlify.app"], // your frontend URL
-  credentials: true, // Allow cookies
-}));
+
+const corsOptions = {
+  origin: process.env.FRONTEND_URL,
+  credentials: true,
+};
+app.use(cors(corsOptions));
+
 
 
 // app.use(morgan("dev"));

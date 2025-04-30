@@ -37,7 +37,9 @@ const Login = () => {
           withCredentials: true, // <--- Important: Allow cookies
         }
       );
-      // console.log("Login Response:", data);
+      console.log("Login Response:", data);
+      console.log("-> ",data.success)
+      console.log("userId : ", data?.user._id)
 
       // console.log("data on login : ", { data });
       if (data.success) {
