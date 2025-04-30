@@ -96,6 +96,8 @@ exports.loginController = async (req, res) => {
 
     const userWithoutPassword = await userModel.findById(user._id).select("-password");
 
+    console.log("Data on Login ", { userWithoutPassword });
+
     return res.status(200).send({
       success: true,
       message: "Login successful",
