@@ -29,8 +29,10 @@ const Navbar = () => {
   useEffect(() => {
     if (location.pathname === "/blogs") {
       setValue(0);
-    } else if (location.pathname === "/create-blog") {
+    } else if (location.pathname === "/my-blog") {
       setValue(1);
+    } else if (location.pathname === "/create-blog") {
+      setValue(2);
     }
   }, [location]);
 
@@ -50,7 +52,7 @@ const Navbar = () => {
   
   return (
     <>
-      <AppBar position="sticky">
+      <AppBar position="sticky" sx={{backgroundColor : "rgb(212, 102, 11)"}}>
         <Toolbar>
         <Typography 
           variant="h4" 

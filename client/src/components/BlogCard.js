@@ -50,12 +50,19 @@ export default function BlogCard({
         margin: "auto",
         mt: 2,
         padding: 2,
+        transition: "all 0.3s ease-in-out",
+        border: "2px solid transparent",
         boxShadow: "5px 5px 10px #ccc",
-        ":hover:": {
-          boxShadow: "10px 10px 20px #ccc",
+        backgroundColor: "white",
+        "&:hover": {
+          boxShadow: "10px 10px 20px rgb(176, 163, 152)",
+          border : "2px solid rgb(212, 115, 42)",
+          transform: "scale(1.05)",
+          filter : "brightness(105%)",
+          backgroundColor: "rgba(235, 225, 225, 0.8)",
         },
       }}
-    >
+    > 
       {isUser && (
         <Box display={"flex"}>
           <IconButton onClick={handleEdit} sx={{ marginLeft: "auto" }}>
@@ -79,7 +86,7 @@ export default function BlogCard({
       />
       <CardMedia
         component="img"
-        height="300"
+        height="250"
         image={imgSrc}
         alt="Image"
         onError={() => setImgSrc(DEFAULT_IMAGE)}
