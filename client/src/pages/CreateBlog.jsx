@@ -29,9 +29,8 @@ const CreateBlog = () => {
         content: inputs.content,
         image: inputs.image,
         user: id,
-      }, {
-        withCredentials: true, // Important if using cookies
       });
+      // console.log("Data for creating blog : ", { data });
       if (data?.success) {
         toast.success("Blog Created");
         navigate("/blogs");

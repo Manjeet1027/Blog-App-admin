@@ -7,29 +7,27 @@ const {
   deleteBlogController,
   userBlogControlller,
 } = require("../controllers/blogController");
-const { protectRoute } = require("../middleware/auth.middleware");
 
 //router object
 const router = express.Router();
 
 //routes
-router.use(protectRoute);
-// all blogs
-router.get("/all-blog",  getAllBlogsController);
+// GET || all blogs
+router.get("/all-blog", getAllBlogsController);
 
-// create blog
-router.post("/create-blog",createBlogController);
+//POST || create blog
+router.post("/create-blog", createBlogController);
 
-// update blog
-router.put("/update-blog/:id",updateBlogController);
+//PUT || update blog
+router.put("/update-blog/:id", updateBlogController);
 
-// SIngle Blog Details
-router.get("/get-blog/:id",getBlogByIdController);
+//GET || SIngle Blog Details
+router.get("/get-blog/:id", getBlogByIdController);
 
-// delete blog
-router.delete("/delete-blog/:id",deleteBlogController);
+//DELETE || delete blog
+router.delete("/delete-blog/:id", deleteBlogController);
 
-//| user blog
+//GET || user blog
 router.get("/user-blog/:id", userBlogControlller);
 
 module.exports = router;

@@ -33,9 +33,7 @@ export default function BlogCard({
 
   const handleDelete = async () => {
     try {
-      const { data } = await axios.delete(`${base_url}/api/blog/delete-blog/${id}`, {
-        withCredentials: true, // Important if using cookies
-      });
+      const { data } = await axios.delete(`${base_url}/api/blog/delete-blog/${id}`);
       if (data?.success) {
         alert("Blog Deleted");
         window.location.reload();

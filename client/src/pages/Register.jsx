@@ -32,8 +32,6 @@ const Register = () => {
         username: inputs.name,
         email: inputs.email,
         password: inputs.password,
-      },{
-        withCredentials: true, // Important if using cookies
       });
       if (data.success) {
         toast.success("User Registered Successfully");

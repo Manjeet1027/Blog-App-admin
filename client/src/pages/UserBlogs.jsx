@@ -9,9 +9,7 @@ const UserBlogs = () => {
   const getUserBlogs = async () => {
     try {
       const id = localStorage.getItem("userId");
-      const { data } = await axios.get(`${base_url}/api/blog/user-blog/${id}`, {
-        withCredentials: true, // Important if using cookies
-      });
+      const { data } = await axios.get(`${base_url}/api/blog/user-blog/${id}`);
       if (data?.success) {
         setBlogs(data?.userBlog.blogs);
       }

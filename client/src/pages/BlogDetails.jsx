@@ -12,9 +12,7 @@ const BlogDetails = () => {
   // get blog details
   const getBlogDetail = async () => {
     try {
-      const { data } = await axios.get(`${base_url}/api/blog/get-blog/${id}`, {
-        withCredentials: true, // Important if using cookies
-      });
+      const { data } = await axios.get(`${base_url}/api/blog/get-blog/${id}`);
       if (data?.success) {
         setBlog(data?.blog);
         setInputs({
@@ -51,8 +49,6 @@ const BlogDetails = () => {
           content: inputs.content,
           image: inputs.image,
           user: id,
-        }, {
-          withCredentials: true, // Important if using cookies
         }
       );
       // console.log("Data : " , data)

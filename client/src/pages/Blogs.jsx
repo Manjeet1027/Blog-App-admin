@@ -1,49 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState} from "react";
 import axios from "axios";
 import BlogCard from "../components/BlogCard";
 import {  Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Loader from "../components/Loader";
+import { useSelector } from "react-redux";
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const [isAuth, setIsAuth] = useState(null);
   const base_url = process.env.REACT_APP_BASE_URL;
 
 
-  useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const res = await axios.get(`${base_url}/api/user/auth-status`, {
-          withCredentials: true,
-        });
-        if (res.data?.success) {
-          setIsAuth(true);
-          getAllBlogs(); 
-        } else {
-          setIsAuth(false);
-          navigate("/login");
-        }
-      } catch (error) {
-        console.log("Auth check failed", error);
-        setIsAuth(false);
-        navigate("/login");
-      }
-    };
-
-    checkAuth();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [navigate, base_url]);
+  let isLogin = useSelector((state) => state.isLogin);
+  isLogin = isLogin || localStorage.getItem("userId");
 
 
   const getAllBlogs = async () => {
     try {
       setIsLoading(true);
-      const { data } = await axios.get(`${base_url}/api/blog/all-blog`, {
-        withCredentials: true,
-      });
+      const { data } = await axios.get(`${base_url}/api/blog/all-blog`);
       if (data?.success) {
         setBlogs(data?.blogs);
       }
@@ -54,9 +31,14 @@ const Blogs = () => {
     }
   };
 
+  useEffect(() => {
+    getAllBlogs();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   // ✅ UI rendering
-  if (isAuth === null || isLoading) return <Loader />;
-  if (!isAuth) {
+  if (isLogin === null || isLoading) return <Loader />;
+  if (!isLogin) {
     navigate("/login");
   }
 

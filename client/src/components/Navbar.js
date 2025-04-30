@@ -10,11 +10,9 @@ import {
   Tab,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-import {  useDispatch } from "react-redux";
+import {  useDispatch, useSelector } from "react-redux";
 import { authActions } from "../redux/store";
 import toast from "react-hot-toast";
-import axios from "axios";
-const base_url = process.env.REACT_APP_BASE_URL;
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -23,32 +21,9 @@ const Navbar = () => {
   //state
   const [value, setValue] = useState();
 
-  const [isAuth, setIsAuth] = useState(null);
-  useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const res = await axios.get(`${base_url}/api/user/auth-status`, {
-          withCredentials: true,
-        });
-        console.log("1 : ", { res });
-        console.log("2 : ",  res.data );
-        console.log("3 : ", res.data.success);
-        if (res.data?.success) {
-          setIsAuth(true);
-        } else {
-          setIsAuth(false);
-          navigate("/login");
-        }
-      } catch (error) {
-        console.log("Auth check failed", error);
-        setIsAuth(false);
-        navigate("/login");
-      }
-    };
+  let isLogin = useSelector((state) => state.isLogin);
+  isLogin = isLogin || localStorage.getItem("userId");
 
-    checkAuth();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [navigate, base_url]);
 
   // Set the active tab based on the current location
   useEffect(() => {
@@ -59,22 +34,19 @@ const Navbar = () => {
     }
   }, [location]);
 
-  //logout
-  const handleLogout = async () => {
-    try {
-      await axios.get(`${base_url}/api/user/logout`, {
-        withCredentials: true, // Important if using cookies
-      });
-  
-      dispatch(authActions.logout());
-      toast.success("Logout Successfully");
-      localStorage.clear(); // Optional
-      navigate("/login");
-    } catch (error) {
-      console.log(error);
-      toast.error("Logout failed");
-    }
-  };
+    //logout
+    const handleLogout = () => {
+      try {
+        dispatch(authActions.logout());
+        toast.success("Logout Successfully");
+        localStorage.clear();
+        window.location.reload();
+        navigate("/login");
+      } catch (error) {
+        console.log(error);
+        toast.error("Logout failed");
+      }
+    };
   
   return (
     <>
@@ -85,7 +57,7 @@ const Navbar = () => {
           onClick={() => navigate("/blogs")} 
           style={{ cursor: "pointer" }}
         >Blog It</Typography>
-          {isAuth && (
+          {isLogin && (
             <Box display={"flex"} 
             justifyContent="flex-start" marginLeft={3}>
               <Tabs
@@ -104,7 +76,7 @@ const Navbar = () => {
             </Box>
           )}
           <Box display={"flex"} marginLeft="auto">
-            {!isAuth && (
+            {!isLogin && (
               <>
                 <Button
                   sx={{ margin: 1, color: "white" }}
@@ -122,7 +94,7 @@ const Navbar = () => {
                 </Button>
               </>
             )}
-            {isAuth && (
+            {isLogin && (
               <Button onClick={handleLogout} sx={{ margin: 1, color: "white" }}>
                 Logout
               </Button>

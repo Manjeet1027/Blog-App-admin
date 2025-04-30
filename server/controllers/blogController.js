@@ -22,10 +22,9 @@ exports.getAllBlogsController = async (req, res) => {
     console.log(error);
     return res.status(500).send({
       success: false,
-      message: `Error in Getting all blogs : ${error.message}`,
-      error: process.env.NODE_ENV === "development" ? error : undefined,
+      message: "Error WHile Getting Blogs",
+      error,
     });
-    
   }
 };
 
@@ -33,9 +32,9 @@ exports.getAllBlogsController = async (req, res) => {
 exports.createBlogController = async (req, res) => {
   try {
     const { title, content, image, user } = req.body;
-    // console.log({ title, content, image, user })
+    // console.log("Data for creating blog : ", { title, content, image, user });
     //validation
-    if (!title || !content  || !user) {
+    if (!title || !content || !user) {
       return res.status(400).send({
         success: false,
         message: "Please Provide All Fields",
@@ -57,6 +56,7 @@ exports.createBlogController = async (req, res) => {
     exisitingUser.blogs.push(newBlog);
     await exisitingUser.save({ session });
     await session.commitTransaction();
+    await newBlog.save();
     return res.status(201).send({
       success: true,
       message: "Blog Created!",
@@ -64,12 +64,11 @@ exports.createBlogController = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    return res.status(500).send({
+    return res.status(400).send({
       success: false,
-      message: `Error in Creating Blog: ${error.message}`,
-      error: process.env.NODE_ENV === "development" ? error : undefined,
+      message: "Error WHile Creting blog",
+      error,
     });
-    
   }
 };
 
@@ -78,20 +77,11 @@ exports.updateBlogController = async (req, res) => {
   try {
     const { id } = req.params;
     const { title, content, image } = req.body;
-    console.log("Updating...")
-    // console.log({ title, content, image })
     const blog = await blogModel.findByIdAndUpdate(
       id,
-      { ...req.body },
+      { title, content, image },
       { new: true }
     );
-    if (!blog) {
-      return res.status(404).send({
-        success: false,
-        message: "No blog found with given ID",
-      });
-    }
-
     return res.status(200).send({
       success: true,
       message: "Blog Updated!",
@@ -99,12 +89,11 @@ exports.updateBlogController = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    return res.status(500).send({
+    return res.status(400).send({
       success: false,
-      message: `Error in Updating Blog : ${error.message}`,
-      error: process.env.NODE_ENV === "development" ? error : undefined,
+      message: "Error WHile Updating Blog",
+      error,
     });
-    
   }
 };
 
@@ -126,12 +115,11 @@ exports.getBlogByIdController = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    return res.status(500).send({
+    return res.status(400).send({
       success: false,
-      message: `Error in getting single blog: ${error.message}`,
-      error: process.env.NODE_ENV === "development" ? error : undefined,
+      message: "error while getting single blog",
+      error,
     });
-    
   }
 };
 
@@ -150,12 +138,11 @@ exports.deleteBlogController = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    return res.status(500).send({
+    return res.status(400).send({
       success: false,
-      message: `Error in Deleting blog: ${error.message}`,
-      error: process.env.NODE_ENV === "development" ? error : undefined,
+      message: "Erorr WHile Deleteing BLog",
+      error,
     });
-    
   }
 };
 
@@ -177,11 +164,10 @@ exports.userBlogControlller = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    return res.status(500).send({
+    return res.status(400).send({
       success: false,
-      message: `Error in User blogs : ${error.message}`,
-      error: process.env.NODE_ENV === "development" ? error : undefined,
+      message: "error in user blog",
+      error,
     });
-    
   }
 };
