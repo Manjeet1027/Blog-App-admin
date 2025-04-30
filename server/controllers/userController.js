@@ -92,6 +92,7 @@ exports.loginController = async (req, res) => {
         message: "Invalid username or password",
       });
     }
+    
     generateToken(user._id, res);
 
     const userWithoutPassword = await userModel.findById(user._id).select("-password");

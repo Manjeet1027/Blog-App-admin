@@ -33,9 +33,6 @@ function App() {
       //   setIsAuth(false);
       //   navigate("/login");
       // }
-      console.log("1 : ", { res });
-      console.log("2 : ",  res.data );
-      console.log("3 : ", res.data.success);
       setIsAuth(true);
     } catch (err) {
       setIsAuth(false);
