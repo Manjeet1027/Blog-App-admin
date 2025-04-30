@@ -36,7 +36,7 @@ exports.registerController = async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.status(500).send({
-      message: "Error In Register callback",
+      message: "Error In Register callback: ", error,
       success: false,
       error,
     });
@@ -57,7 +57,7 @@ exports.getAllUsers = async (req, res) => {
     console.log(error);
     return res.status(500).send({
       success: false,
-      message: "Error In Get ALl Users",
+      message: "Error In Get ALl Users: ", error,
       error,
     });
   }
@@ -102,7 +102,7 @@ exports.loginController = async (req, res) => {
     console.log(error);
     return res.status(500).send({
       success: false,
-      message: "Error In Login Callback",
+      message: "Error In Login Callback : ", error,
       error,
     });
   }

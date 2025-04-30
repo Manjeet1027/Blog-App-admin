@@ -22,7 +22,7 @@ exports.getAllBlogsController = async (req, res) => {
     console.log(error);
     return res.status(500).send({
       success: false,
-      message: "Error WHile Getting Blogs",
+      message: "Error WHile Getting Blogs: ", error,
       error,
     });
   }
@@ -65,7 +65,7 @@ exports.createBlogController = async (req, res) => {
     console.log(error);
     return res.status(400).send({
       success: false,
-      message: "Error While Creating blog",
+      message: "Error While Creating blog: ", error,
       error,
     });
   }
@@ -99,7 +99,7 @@ exports.updateBlogController = async (req, res) => {
     console.log(error);
     return res.status(400).send({
       success: false,
-      message: "Error WHile Updating Blog",
+      message: "Error WHile Updating Blog: ", error,
       error,
     });
   }
@@ -125,7 +125,7 @@ exports.getBlogByIdController = async (req, res) => {
     console.log(error);
     return res.status(400).send({
       success: false,
-      message: "error while getting single blog",
+      message: "error while getting single blog: ", error,
       error,
     });
   }
@@ -148,7 +148,7 @@ exports.deleteBlogController = async (req, res) => {
     console.log(error);
     return res.status(500).send({
       success: false,
-      message: "Erorr While Deleteing Blog",
+      message: "Erorr While Deleteing Blog: ", error,
       error,
     });
   }
@@ -174,7 +174,7 @@ exports.userBlogControlller = async (req, res) => {
     console.log(error);
     return res.status(400).send({
       success: false,
-      message: "error in user blog",
+      message: "error in user blog: ", error,
       error,
     });
   }
