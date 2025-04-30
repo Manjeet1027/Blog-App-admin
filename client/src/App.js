@@ -8,10 +8,19 @@ import CreateBlog from "./pages/CreateBlog";
 import BlogDetails from "./pages/BlogDetails";
 import { Toaster } from "react-hot-toast";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 function App() {  
   let isLogin = useSelector((state) => state.isLogin);
   isLogin = isLogin || localStorage.getItem("userId");
+
+  useEffect(() => {
+    // Detect reload
+    const navType = window.performance.getEntriesByType("navigation")[0]?.type;
+    if (navType === "reload" && window.location.pathname !== "/") {
+      window.location.href = "/";
+    }
+  }, []);
 
   return (
     <>
