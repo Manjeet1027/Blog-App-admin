@@ -30,6 +30,9 @@ const Navbar = () => {
         const res = await axios.get(`${base_url}/api/user/auth-status`, {
           withCredentials: true,
         });
+        console.log("1 : ", { res });
+        console.log("2 : ",  res.data );
+        console.log("3 : ", res.data.success);
         if (res.data?.success) {
           setIsAuth(true);
         } else {

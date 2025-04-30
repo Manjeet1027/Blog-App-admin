@@ -26,7 +26,6 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 
-
 // app.use(morgan("dev"));
 
 // //routes
