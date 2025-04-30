@@ -30,6 +30,7 @@ const BlogDetails = () => {
 
   useEffect(() => {
     getBlogDetail();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   // input change
