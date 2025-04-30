@@ -40,7 +40,8 @@ const Navbar = () => {
         dispatch(authActions.logout());
         toast.success("Logout Successfully");
         localStorage.clear();
-        window.location.reload();
+        navigate("login");
+        // window.location.reload();
       } catch (error) {
         console.log(error);
         toast.error("Logout failed");
