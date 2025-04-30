@@ -93,12 +93,14 @@ exports.loginController = async (req, res) => {
       });
     }
 
-    generateToken(user._id, res);
+    const userWithoutPassword = await userModel.findById(user._id).select("-password");
 
+    generateToken(user._id, res);
+    
     return res.status(200).send({
       success: true,
-      messgae: "login successfully",
-      user,
+      message: "Login successful",
+      user: userWithoutPassword,
     });
   } catch (error) {
     console.log(error);
