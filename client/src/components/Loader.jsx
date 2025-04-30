@@ -16,14 +16,17 @@ const Loader = () => {
             },
           }}
         >
+          <Skeleton animation="wave" height={30} width="40%" style={{ marginBottom: 6 }} />
+          <Skeleton animation="wave" height={30} width="25%" style={{ marginBottom: 6 }} />
           <Skeleton
-            sx={{ height: 190, marginBottom: "20px" }}
+            sx={{ height: 140, marginBottom: "20px" }}
             animation="wave"
             variant="rectangular"
           />
-          <Skeleton animation="wave" height={50} style={{ marginBottom: 6 }} />
-          <Skeleton animation="wave" height={80} width="80%" />
+          <Skeleton animation="wave" height={50} width="60%"  />
+          <Skeleton animation="wave" height={100} width="90%" />
         </Card>
+     
       <Card
           sx={{
             width: "40%",
@@ -36,14 +39,17 @@ const Loader = () => {
             },
           }}
         >
+          <Skeleton animation="wave" height={30} width="40%" style={{ marginBottom: 6 }} />
+          <Skeleton animation="wave" height={30} width="25%" style={{ marginBottom: 6 }} />
           <Skeleton
-            sx={{ height: 190, marginBottom: "20px" }}
+            sx={{ height: 140, marginBottom: "20px" }}
             animation="wave"
             variant="rectangular"
           />
-          <Skeleton animation="wave" height={50} style={{ marginBottom: 6 }} />
-          <Skeleton animation="wave" height={80} width="80%" />
+          <Skeleton animation="wave" height={50} width="60%"  />
+          <Skeleton animation="wave" height={100} width="90%" />
         </Card>
+     
       <Card
           sx={{
             width: "40%",
@@ -56,14 +62,17 @@ const Loader = () => {
             },
           }}
         >
+          <Skeleton animation="wave" height={30} width="40%" style={{ marginBottom: 6 }} />
+          <Skeleton animation="wave" height={30} width="25%" style={{ marginBottom: 6 }} />
           <Skeleton
-            sx={{ height: 190, marginBottom: "20px" }}
+            sx={{ height: 140, marginBottom: "20px" }}
             animation="wave"
             variant="rectangular"
           />
-          <Skeleton animation="wave" height={50} style={{ marginBottom: 6 }} />
-          <Skeleton animation="wave" height={80} width="80%" />
+          <Skeleton animation="wave" height={50} width="60%"  />
+          <Skeleton animation="wave" height={100} width="90%" />
         </Card>
+     
       <Card
           sx={{
             width: "40%",
@@ -76,14 +85,17 @@ const Loader = () => {
             },
           }}
         >
+          <Skeleton animation="wave" height={30} width="40%" style={{ marginBottom: 6 }} />
+          <Skeleton animation="wave" height={30} width="25%" style={{ marginBottom: 6 }} />
           <Skeleton
-            sx={{ height: 190, marginBottom: "20px" }}
+            sx={{ height: 140, marginBottom: "20px" }}
             animation="wave"
             variant="rectangular"
           />
-          <Skeleton animation="wave" height={50} style={{ marginBottom: 6 }} />
-          <Skeleton animation="wave" height={80} width="80%" />
+          <Skeleton animation="wave" height={50} width="60%"  />
+          <Skeleton animation="wave" height={100} width="90%" />
         </Card>
+     
       <Card
           sx={{
             width: "40%",
@@ -96,14 +108,17 @@ const Loader = () => {
             },
           }}
         >
+          <Skeleton animation="wave" height={30} width="40%" style={{ marginBottom: 6 }} />
+          <Skeleton animation="wave" height={30} width="25%" style={{ marginBottom: 6 }} />
           <Skeleton
-            sx={{ height: 190, marginBottom: "20px" }}
+            sx={{ height: 140, marginBottom: "20px" }}
             animation="wave"
             variant="rectangular"
           />
-          <Skeleton animation="wave" height={50} style={{ marginBottom: 6 }} />
-          <Skeleton animation="wave" height={80} width="80%" />
+          <Skeleton animation="wave" height={50} width="60%"  />
+          <Skeleton animation="wave" height={100} width="90%" />
         </Card>
+     
       <Card
           sx={{
             width: "40%",
@@ -116,14 +131,17 @@ const Loader = () => {
             },
           }}
         >
+          <Skeleton animation="wave" height={30} width="40%" style={{ marginBottom: 6 }} />
+          <Skeleton animation="wave" height={30} width="25%" style={{ marginBottom: 6 }} />
           <Skeleton
-            sx={{ height: 190, marginBottom: "20px" }}
+            sx={{ height: 140, marginBottom: "20px" }}
             animation="wave"
             variant="rectangular"
           />
-          <Skeleton animation="wave" height={50} style={{ marginBottom: 6 }} />
-          <Skeleton animation="wave" height={80} width="80%" />
+          <Skeleton animation="wave" height={50} width="60%"  />
+          <Skeleton animation="wave" height={100} width="90%" />
         </Card>
+     
     </>
   )
 }

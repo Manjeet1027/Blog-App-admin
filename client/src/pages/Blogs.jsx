@@ -36,13 +36,9 @@ const Blogs = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // ✅ UI rendering
-  if (isLogin === null || isLoading) return <Loader />;
   if (!isLogin) {
     navigate("/login");
   }
-
-
 
   return (
     <>

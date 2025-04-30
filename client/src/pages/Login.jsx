@@ -14,6 +14,7 @@ const Login = () => {
     email: "",
     password: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   //handle input change
   const handleChange = (e) => {
@@ -27,6 +28,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setIsLoading(true);
       const { data } = await axios.post(
         `${base_url}/api/user/login`,
         {
@@ -49,6 +51,9 @@ const Login = () => {
     } catch (error) {
       console.log(error);
       toast.error("Invalid username or password");
+    }
+    finally{
+      setIsLoading(false);
     }
   };
 
@@ -97,6 +102,7 @@ const Login = () => {
 
           <Button
             type="submit"
+            loading={isLoading}
             sx={{ borderRadius: 3, marginTop: 3 }}
             variant="contained"
             color="primary"

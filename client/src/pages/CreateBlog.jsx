@@ -13,6 +13,8 @@ const CreateBlog = () => {
     content: "",
     image: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
+
   // input change
   const handleChange = (e) => {
     setInputs((prevState) => ({
@@ -24,6 +26,7 @@ const CreateBlog = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setIsLoading(true);
       const { data } = await axios.post(`${base_url}/api/blog/create-blog`, {
         title: inputs.title,
         content: inputs.content,
@@ -37,6 +40,9 @@ const CreateBlog = () => {
       }
     } catch (error) {
       console.log(error);
+    }
+    finally{
+      setIsLoading(false);
     }
   };
   return (
@@ -100,7 +106,7 @@ const CreateBlog = () => {
             margin="normal"
             variant="outlined"
           />
-          <Button type="submit" color="primary" variant="contained">
+          <Button type="submit" loading={isLoading} color="primary" variant="contained">
             SUBMIT
           </Button>
         </Box>

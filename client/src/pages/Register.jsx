@@ -15,6 +15,7 @@ const Register = () => {
     email: "",
     password: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   //handle input change
   const handleChange = (e) => {
@@ -28,6 +29,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setIsLoading(true);
       const { data } = await axios.post(`${base_url}/api/user/register`, {
         username: inputs.name,
         email: inputs.email,
@@ -49,6 +51,9 @@ const Register = () => {
         toast.error("Something went wrong");
         alert("Something went wrong");
       }
+    }
+    finally{
+      setIsLoading(false);
     }
   };
 
@@ -105,6 +110,7 @@ const Register = () => {
 
           <Button
             type="submit"
+            loading={isLoading}
             sx={{ borderRadius: 3, marginTop: 3 }}
             variant="contained"
             color="primary"
