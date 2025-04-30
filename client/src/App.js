@@ -17,20 +17,26 @@ function App() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
+        // eslint-disable-next-line no-unused-vars
         const res = await axios.get(`${base_url}/api/user/auth-status`, {
           withCredentials: true,
         });
-        if (res.data?.success) {
-          setIsAuth(true);
-        } else {
-          setIsAuth(false);
-          navigate("/login");
-        }
-      } catch (error) {
-        console.log("Auth check failed", error);
-        setIsAuth(false);
-        navigate("/login");
-      }
+      //   if (res.data?.success) {
+      //     setIsAuth(true);
+      //   } else {
+      //     setIsAuth(false);
+      //     navigate("/login");
+      //   }
+      // } catch (error) {
+      //   console.log("Auth check failed", error);
+      //   setIsAuth(false);
+      //   navigate("/login");
+      // }
+      setIsAuth(true);
+    } catch (err) {
+      setIsAuth(false);
+      navigate("/login");
+    }
     };
 
     checkAuth();
