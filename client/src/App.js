@@ -1,5 +1,5 @@
 import Navbar from "./components/Navbar";
-import { Routes, Route, Navigate} from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate} from "react-router-dom";
 import Blogs from "./pages/Blogs";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -14,13 +14,24 @@ function App() {
   let isLogin = useSelector((state) => state.isLogin);
   isLogin = isLogin || localStorage.getItem("userId");
 
+  const navigate = useNavigate();
+
   useEffect(() => {
-    // Detect reload
-    const navType = window.performance.getEntriesByType("navigation")[0]?.type;
-    if (navType === "reload" && window.location.pathname !== "/") {
-      window.location.href = "/";
-    }
-  }, []);
+    const handleBeforeUnload = (event) => {
+      // Stop the reload
+      event.preventDefault();
+      event.returnValue = ""; // required for some browsers
+
+      // Instead of reload, navigate to "/"
+      navigate("/");
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, [navigate]);
 
   return (
     <>
