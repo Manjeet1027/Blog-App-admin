@@ -36,10 +36,11 @@ exports.registerController = async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.status(500).send({
-      message: "Error In Register callback: ", error,
       success: false,
-      error,
+      message: `Error in Register/Signup: ${error.message}`,
+      error: process.env.NODE_ENV === "development" ? error : undefined,
     });
+    
   }
 };
 
@@ -57,9 +58,10 @@ exports.getAllUsers = async (req, res) => {
     console.log(error);
     return res.status(500).send({
       success: false,
-      message: "Error In Get ALl Users: ", error,
-      error,
+      message: `Error in getting all users : ${error.message}`,
+      error: process.env.NODE_ENV === "development" ? error : undefined,
     });
+    
   }
 };
 
@@ -102,8 +104,9 @@ exports.loginController = async (req, res) => {
     console.log(error);
     return res.status(500).send({
       success: false,
-      message: "Error In Login Callback : ", error,
-      error,
+      message: `Error in Login Callback: ${error.message}`,
+      error: process.env.NODE_ENV === "development" ? error : undefined,
     });
+    
   }
 };

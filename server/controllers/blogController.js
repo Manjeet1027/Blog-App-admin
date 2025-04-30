@@ -22,9 +22,10 @@ exports.getAllBlogsController = async (req, res) => {
     console.log(error);
     return res.status(500).send({
       success: false,
-      message: "Error WHile Getting Blogs: ", error,
-      error,
+      message: `Error in Getting all blogs : ${error.message}`,
+      error: process.env.NODE_ENV === "development" ? error : undefined,
     });
+    
   }
 };
 
@@ -63,11 +64,12 @@ exports.createBlogController = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    return res.status(400).send({
+    return res.status(500).send({
       success: false,
-      message: "Error While Creating blog: ", error,
-      error,
+      message: `Error in Creating Blog: ${error.message}`,
+      error: process.env.NODE_ENV === "development" ? error : undefined,
     });
+    
   }
 };
 
@@ -97,11 +99,12 @@ exports.updateBlogController = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    return res.status(400).send({
+    return res.status(500).send({
       success: false,
-      message: "Error WHile Updating Blog: ", error,
-      error,
+      message: `Error in Updating Blog : ${error.message}`,
+      error: process.env.NODE_ENV === "development" ? error : undefined,
     });
+    
   }
 };
 
@@ -123,11 +126,12 @@ exports.getBlogByIdController = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    return res.status(400).send({
+    return res.status(500).send({
       success: false,
-      message: "error while getting single blog: ", error,
-      error,
+      message: `Error in getting single blog: ${error.message}`,
+      error: process.env.NODE_ENV === "development" ? error : undefined,
     });
+    
   }
 };
 
@@ -148,9 +152,10 @@ exports.deleteBlogController = async (req, res) => {
     console.log(error);
     return res.status(500).send({
       success: false,
-      message: "Erorr While Deleteing Blog: ", error,
-      error,
+      message: `Error in Deleting blog: ${error.message}`,
+      error: process.env.NODE_ENV === "development" ? error : undefined,
     });
+    
   }
 };
 
@@ -172,10 +177,11 @@ exports.userBlogControlller = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    return res.status(400).send({
+    return res.status(500).send({
       success: false,
-      message: "error in user blog: ", error,
-      error,
+      message: `Error in User blogs : ${error.message}`,
+      error: process.env.NODE_ENV === "development" ? error : undefined,
     });
+    
   }
 };
