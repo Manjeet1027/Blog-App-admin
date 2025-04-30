@@ -10,21 +10,42 @@ import {
   Tab,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import {  useDispatch } from "react-redux";
 import { authActions } from "../redux/store";
 import toast from "react-hot-toast";
 import axios from "axios";
 const base_url = process.env.REACT_APP_BASE_URL;
 
 const Navbar = () => {
-  // global state
-  let isLogin = useSelector((state) => state.isLogin);
-  isLogin = isLogin || localStorage.getItem("userId");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation(); // Get the current path
   //state
   const [value, setValue] = useState();
+
+  const [isAuth, setIsAuth] = useState(null);
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const res = await axios.get(`${base_url}/api/user/auth-status`, {
+          withCredentials: true,
+        });
+        if (res.data?.success) {
+          setIsAuth(true);
+        } else {
+          setIsAuth(false);
+          navigate("/login");
+        }
+      } catch (error) {
+        console.log("Auth check failed", error);
+        setIsAuth(false);
+        navigate("/login");
+      }
+    };
+
+    checkAuth();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [navigate, base_url]);
 
   // Set the active tab based on the current location
   useEffect(() => {
@@ -61,7 +82,7 @@ const Navbar = () => {
           onClick={() => navigate("/blogs")} 
           style={{ cursor: "pointer" }}
         >Blog It</Typography>
-          {isLogin && (
+          {isAuth && (
             <Box display={"flex"} 
             justifyContent="flex-start" marginLeft={3}>
               <Tabs
@@ -80,7 +101,7 @@ const Navbar = () => {
             </Box>
           )}
           <Box display={"flex"} marginLeft="auto">
-            {!isLogin && (
+            {!isAuth && (
               <>
                 <Button
                   sx={{ margin: 1, color: "white" }}
@@ -98,7 +119,7 @@ const Navbar = () => {
                 </Button>
               </>
             )}
-            {isLogin && (
+            {isAuth && (
               <Button onClick={handleLogout} sx={{ margin: 1, color: "white" }}>
                 Logout
               </Button>

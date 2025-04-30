@@ -22,6 +22,7 @@ const UserBlogs = () => {
 
   useEffect(() => {
     getUserBlogs();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   // console.log(blogs);
   return (
