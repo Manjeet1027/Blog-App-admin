@@ -29,8 +29,8 @@ router.post("/login", loginController);
 router.get("/logout", (req, res) => {
   res.clearCookie("jwt", {
     httpOnly: true,
-    sameSite: "strict",
-    secure: process.env.DEV !== "development",
+    sameSite: process.env.NODE_ENV === "development" ? "Lax" : "None",
+    secure: process.env.NODE_ENV !== "development",
   });
   return res.status(200).json({ success: true, message: "Logged out successfully" });
 });
