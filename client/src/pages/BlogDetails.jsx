@@ -121,7 +121,6 @@ const BlogDetails = () => {
             onChange={handleChange}
             margin="normal"
             variant="outlined"
-            required
           />
           <Button type="submit" color="warning" variant="contained">
             UPDATE
