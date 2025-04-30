@@ -18,13 +18,13 @@ function App() {
       <Navbar />
       <Toaster />
       <Routes>
-        <Route path="/" element={isLogin ? <Blogs /> :<Navigate to="/login" /> } />
+        <Route path="/" element={isLogin ? <Navigate to="/blogs" /> :<Navigate to="/login" /> } />
         <Route path="/blogs" element={isLogin ? <Blogs /> : <Navigate to="/login" />} />
         <Route path="/my-blogs" element={isLogin ? <UserBlogs />  : <Navigate to="/login" />} />
         <Route path="/blog-details/:id" element={isLogin ? <BlogDetails /> : <Navigate to="/login" />} />
         <Route path="/create-blog" element={isLogin ? <CreateBlog />: <Navigate to="/login" />} />
         <Route path="/login" element={!isLogin ? <Login />: <Navigate to="/" />} />
-        <Route path="/register" element={! isLogin ?<Register />: <Navigate to="/" />} />
+        <Route path="/register" element={!isLogin ?<Register />: <Navigate to="/" />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
 
