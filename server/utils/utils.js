@@ -11,8 +11,7 @@ const generateToken = (userId, res) => {
     httpOnly: true,
     sameSite: "strict",
     secure: process.env.DEV !== "development",
-  }).status(200)
-  .json({ success: true, message: "Login successful" });
+  })
 
 
   return token;

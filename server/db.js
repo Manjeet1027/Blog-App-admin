@@ -6,14 +6,12 @@ dotenv.config();
 
 
 const connectDB = async () => {
-  mongoose
-  .connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => {
-    app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
-    });
-  })
-  .catch((err) => console.error("DB connection error:", err));
+  try {
+    await mongoose.connect(process.env.MONGO_URL);
+    console.log("Connected to DB")
+  } catch (error) {
+    console.log(`MONGO Connect Error ${error}`);
+  }
 };
 
 module.exports = connectDB;
