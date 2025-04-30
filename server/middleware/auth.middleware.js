@@ -4,6 +4,7 @@ const User = require("../models/userModel");
 const protectRoute = async (req, res, next) => {
   try {
     const token = req.cookies.jwt; // "jwt" name given to cookie in utils
+    console.log({ token });
 
     if (!token) {
       console.log("Error with the token");
