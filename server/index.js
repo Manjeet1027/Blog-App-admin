@@ -18,7 +18,7 @@ const app = express();
 
 //middelwares
 app.use(cors({
-  origin: "http://localhost:3000", // your frontend URL
+  origin: ["http://localhost:3000","https://blog-app-admin.netlify.app"], // your frontend URL
   credentials: true, // Allow cookies
 }));
 app.use(cookieParser());
