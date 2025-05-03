@@ -8,6 +8,7 @@ import CreateBlog from "./pages/CreateBlog";
 import BlogDetails from "./pages/BlogDetails";
 import { Toaster } from "react-hot-toast";
 import { useSelector } from "react-redux";
+import Footer from "./components/Footer";
 
 function App() {  
   let isLogin = useSelector((state) => state.isLogin);
@@ -27,7 +28,9 @@ function App() {
         <Route path="/register" element={!isLogin ?<Register />: <Navigate to="/" />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-
+      {isLogin &&
+        <Footer />
+      }
     </>
   );
 }
